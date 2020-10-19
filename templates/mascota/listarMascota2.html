@@ -1,0 +1,37 @@
+{% extends 'basicos/base.html' %}
+
+{% block content %}
+{% if object_list %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Sexo</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Fecha de Rescate</th>
+      <th scope="col">Adoptante</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    {% for actual in object_list %}
+    <tr>
+      <th scope="row">{{actual.id}}</th>
+      <td>{{actual.nombre}}</td>
+      <td>{{actual.sexo}}</td>
+      <td>{{actual.edad}}</td>
+      <td>{{actual.fechaRescate}}</td>
+      <td>{{actual.persona.nombre}} {{actual.persona.apellidos}}</td>
+      <td>
+        <a class="btn btn-primary" href=" editar/{{actual.id}} ">Editar</a>
+         <a class="btn btn-primary" href=" eliminar/{{actual.id}} ">Eliminar</a>
+      </td>
+    </tr>
+   {% endfor %}
+   {% else %}
+   <h1>No hay registros de mascotas</h1>
+   {% endif %}
+  </tbody>
+</table>
+{% endblock %}
